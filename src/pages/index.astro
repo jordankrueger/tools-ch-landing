@@ -1,17 +1,16 @@
 ---
-
+import HomeLayout from '../layouts/HomeLayout.astro';
+import Hero from '../components/Hero.astro';
+import HeroTiles from '../components/HeroTiles.astro';
+import Directory from '../components/Directory.astro';
+import PrivacyStrip from '../components/PrivacyStrip.astro';
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<HomeLayout
+  title="Tools by CampaignHelp — free tools for progressive organizers"
+  description="A bundle of free, useful tools — PDF editing, image work, quick utilities — picked and packaged for the work organizers actually do. No accounts, no upsells, no tracking."
+>
+  <Hero />
+  <HeroTiles />
+  <Directory />
+  <PrivacyStrip />
+</HomeLayout>

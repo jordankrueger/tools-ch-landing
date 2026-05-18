@@ -1,0 +1,28 @@
+---
+import inventory from '../data/tool-inventory.json';
+import type { ToolInventory } from '../data/tool-inventory.schema';
+
+const data = inventory as ToolInventory;
+const featured = data.filter(t => t.featured_task);
+---
+<section class="tiles-section">
+  <div class="tiles-heading">Common tasks</div>
+  <div class="tiles">
+    {featured.map(t => (
+      <a class="tile" href={t.route}>
+        <div class={`tile-icon${t.featured_task!.icon_variant === 'orange' ? ' orange' : ''}`}>{t.featured_task!.icon}</div>
+        <h3>{t.featured_task!.title}</h3>
+        <p>{t.featured_task!.description}</p>
+        <div class="tile-meta">
+          {t.featured_task!.label} <span class="tile-meta-tool">{t.featured_task!.pill}</span>
+        </div>
+      </a>
+    ))}
+    <a class="tile browse" href="#directory">
+      <div class="tile-icon">⊞</div>
+      <h3>Browse all tools</h3>
+      <p>Looking for something else? See everything in the toolbox — PDF, image, conversion, and quick dev utilities.</p>
+      <div class="tile-meta">Jump to directory ↓</div>
+    </a>
+  </div>
+</section>

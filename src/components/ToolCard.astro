@@ -1,0 +1,35 @@
+---
+import type { ToolEntry } from '../data/tool-inventory.schema';
+interface Props { tool: ToolEntry }
+const { tool } = Astro.props;
+
+const iconClass = {
+  "pdf": "b-pdf",
+  "image": "b-img",
+  "image-pro": "b-pro",
+  "tools": "b-dev",
+}[tool.source_app];
+
+const defaultByCategory: Record<string, string> = {
+  "pdf": "📑",
+  "image": "🖼",
+  "image-pro": "⚡",
+  "tools": "🔧",
+};
+
+const iconOverrides: Record<string, string> = {
+  "qr-code-generator": "🔳",
+  "password-generator": "🔐",
+  "color-picker": "🎨",
+};
+
+const iconGlyph = iconOverrides[tool.id] ?? defaultByCategory[tool.source_app];
+---
+<a class="card" href={tool.route} data-tool-id={tool.id} data-category={tool.source_app}>
+  <div class="card-top">
+    <div class={`card-icon ${iconClass}`}>{iconGlyph}</div>
+    <div class="card-tag">{tool.category}</div>
+  </div>
+  <h4>{tool.title}</h4>
+  <p>{tool.description}</p>
+</a>

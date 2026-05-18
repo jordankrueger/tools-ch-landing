@@ -1,0 +1,56 @@
+---
+import inventory from '../data/tool-inventory.json';
+import type { ToolInventory } from '../data/tool-inventory.schema';
+import ToolCard from './ToolCard.astro';
+
+const data = inventory as ToolInventory;
+const visible = data.filter(t => t.appears_on_directory);
+
+const counts = {
+  "All": visible.length,
+  "PDF": visible.filter(t => t.category === "PDF").length,
+  "Image": visible.filter(t => t.category === "Image").length,
+  "Image Pro": visible.filter(t => t.category === "Image Pro").length,
+  "Quick": visible.filter(t => t.category === "Quick").length,
+};
+
+const inventoryJson = JSON.stringify(visible);
+---
+<section class="directory" id="directory">
+  <div class="directory-inner">
+    <div class="directory-head">
+      <div>
+        <h2>All tools</h2>
+        <p>Every utility in the toolbox, searchable. Type what you need — "shrink", "convert", "qr" — synonyms work.</p>
+      </div>
+      <div class="search-wrap">
+        <input
+          id="directory-search-input"
+          type="text"
+          placeholder={`Search tools (try "compress photo")...`}
+          autocomplete="off"
+        />
+        <span class="search-kbd">/</span>
+      </div>
+    </div>
+
+    <div class="cat-tabs" id="directory-cat-tabs">
+      <button class="cat-tab active" data-category="all">All ({counts["All"]})</button>
+      <button class="cat-tab" data-category="pdf">PDF ({counts["PDF"]})</button>
+      <button class="cat-tab" data-category="image">Image ({counts["Image"]})</button>
+      <button class="cat-tab" data-category="image-pro">Image Pro ({counts["Image Pro"]})</button>
+      <button class="cat-tab" data-category="tools">Quick utilities ({counts["Quick"]})</button>
+    </div>
+
+    <div class="grid" id="directory-grid">
+      {visible.map(t => <ToolCard tool={t} />)}
+    </div>
+  </div>
+</section>
+
+<script type="application/json" id="directory-inventory" set:html={inventoryJson} />
+
+<script>
+  import { initDirectorySearch } from '../scripts/directory-search.ts';
+  initDirectorySearch();
+</script>
