@@ -1,0 +1,114 @@
+---
+import HomeLayout from './HomeLayout.astro';
+import CTAButton from '../components/CTAButton.astro';
+import RelatedTools from '../components/RelatedTools.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  target_route: string;
+  target_label: string;
+  related_tools: string[];
+}
+
+const { title, description, target_route, target_label, related_tools } = Astro.props;
+---
+<HomeLayout title={`${title} — Tools by CampaignHelp`} description={description}>
+  <article class="task-page">
+    <header class="task-head">
+      <p class="task-eyebrow">Common task</p>
+      <h1>{title}</h1>
+      <p class="task-lede">{description}</p>
+    </header>
+
+    <section class="task-body">
+      <slot />
+    </section>
+
+    <div class="task-cta-wrap">
+      <CTAButton href={target_route} label={target_label} variant="hero" />
+    </div>
+
+    {related_tools.length > 0 && (
+      <section class="task-related">
+        <h2>Related tools</h2>
+        <RelatedTools ids={related_tools} />
+      </section>
+    )}
+  </article>
+</HomeLayout>
+
+<style is:global>
+  .task-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 28px;
+  }
+  @media (max-width: 720px) {
+    .task-page { padding: 48px 18px; }
+  }
+  .task-head { margin-bottom: 32px; }
+  .task-eyebrow {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: var(--orange-700);
+    margin: 0 0 16px;
+  }
+  .task-page h1 {
+    font-size: clamp(32px, 4.5vw, 44px);
+    line-height: 1.12;
+    color: var(--gray-900);
+    margin: 0 0 18px;
+  }
+  .task-page h1 em {
+    font-style: italic;
+    color: var(--blue-700);
+  }
+  .task-lede {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--gray-600);
+    margin: 0;
+  }
+  .task-body {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gray-800);
+  }
+  .task-body h2 {
+    font-size: 22px;
+    margin: 32px 0 12px;
+    color: var(--gray-900);
+  }
+  .task-body h3 {
+    font-size: 18px;
+    margin: 24px 0 8px;
+    color: var(--gray-900);
+  }
+  .task-body ol, .task-body ul {
+    padding-left: 24px;
+    margin: 0 0 18px;
+  }
+  .task-body li {
+    margin-bottom: 6px;
+  }
+  .task-body p { margin: 0 0 14px; }
+  .task-body .callout {
+    background: var(--gray-50);
+    border-left: 3px solid var(--orange-300);
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 14px;
+    color: var(--gray-600);
+  }
+  .task-body .callout strong { color: var(--gray-700); }
+  .task-cta-wrap {
+    margin: 40px 0 32px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .task-related { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--gray-200); }
+  .task-related h2 { font-size: 20px; margin: 0 0 18px; color: var(--gray-900); }
+</style>

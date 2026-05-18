@@ -1,0 +1,74 @@
+---
+import PrivacyPage from '../layouts/PrivacyPage.astro';
+---
+<PrivacyPage
+  title="How we handle your files"
+  description="A plain-English summary of what each tool sees, plus the technical commitments for the one tool that uploads to our server."
+>
+  <p>
+    Four tool suites live at <code>tools.campaign.help</code>. Three of them — PDF, Image, and Quick utilities — run entirely inside your browser. Your files never leave your device. The fourth, Image Pro, runs on our server because some image formats and the background-removal model need real compute. This page explains what that means concretely.
+  </p>
+
+  <h2>Browser-only tools (PDF, Image, Quick utilities)</h2>
+  <p>
+    These three tool suites process your files locally — they're JavaScript apps running in your browser tab. We don't have a backend that handles them. There's nothing for us to log because the file never reaches our server.
+  </p>
+  <p>
+    You can verify this yourself: open your browser's DevTools (Network tab), drag a file into one of these tools, and watch — no upload request fires. Or read the source: each tool is a fork of an open-source project, and our forks are public.
+  </p>
+
+  <h2>Image Pro</h2>
+  <p>
+    Image Pro is different. It uses Python libraries (Pillow, libheif, rembg) that don't have JavaScript equivalents capable of the same conversions and background removal. So your file does upload to our server briefly. Here's what happens:
+  </p>
+
+  <h3>Per-request isolation</h3>
+  <p>
+    Every upload gets its own UUID-keyed temporary directory under <code>/tmp/imgcompress-uploads/&lt;uuid&gt;/</code>. Your file and any conversion outputs live only in that directory.
+  </p>
+
+  <h3>Cleanup within 60 seconds</h3>
+  <p>
+    When the request finishes (you get your converted file back), Flask's <code>teardown_request</code> hook deletes the entire UUID directory. In practice this happens within milliseconds of the response. A separate sweeper thread also runs every 60 seconds and purges any directory older than 10 minutes, in case a request fails to clean itself up.
+  </p>
+
+  <h3>No logging of file contents or metadata</h3>
+  <p>
+    Our access logs record HTTP method, path, and response code — standard nginx and gunicorn output. We don't log original filenames, EXIF data, file sizes, or content hashes. The server doesn't read EXIF at all.
+  </p>
+
+  <h3>Cache-Control: no-store</h3>
+  <p>
+    Every Image Pro API response sets <code>Cache-Control: no-store, max-age=0</code>. That tells your browser (and any proxy between us) not to store the response, so your converted file isn't cached on a shared edge.
+  </p>
+
+  <h3>100 MB upload cap</h3>
+  <p>
+    Image Pro accepts files up to 100 MB per upload. Larger files get a 413 response without being read. This is a deliberate limit — it caps how much disk space a single bad actor could fill, and matches the size of typical RAW photo bundles.
+  </p>
+
+  <h2>Verify any of this</h2>
+  <p>
+    The forks are all public. Read the code:
+  </p>
+  <ul>
+    <li><a href="https://github.com/jordankrueger/bentopdf-ch">bentopdf-ch</a> — PDF tools</li>
+    <li><a href="https://github.com/jordankrueger/snapotter-ch">snapotter-ch</a> — Image tools</li>
+    <li><a href="https://github.com/jordankrueger/imgcompress-ch">imgcompress-ch</a> — Image Pro (the privacy code is in <code>backend/image_converter/presentation/web/ch_privacy.py</code>)</li>
+    <li><a href="https://github.com/jordankrueger/it-tools-ch">it-tools-ch</a> — Quick utilities</li>
+  </ul>
+
+  <h2>What we collect</h2>
+  <p>
+    Page views and search queries via Plausible Analytics. Plausible doesn't use cookies, doesn't fingerprint visitors, and doesn't sell data. Search queries are recorded as event properties so we can see what people search for and improve the tool list — they're truncated to 100 characters and not associated with any identifier.
+  </p>
+
+  <p>
+    We don't have user accounts, login, ad networks, or third-party scripts beyond Plausible.
+  </p>
+
+  <h2>Questions</h2>
+  <p>
+    If something on this page is wrong, unclear, or has drifted from the actual code, <a href="https://campaign.help/contact">tell us</a> — we'll fix it.
+  </p>
+</PrivacyPage>

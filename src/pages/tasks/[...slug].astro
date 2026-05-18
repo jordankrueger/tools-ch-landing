@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from 'astro:content';
+import TaskPage from '../../layouts/TaskPage.astro';
+
+export async function getStaticPaths() {
+  const tasks = await getCollection('tasks');
+  return tasks.map(task => ({
+    params: { slug: task.id },
+    props: { task },
+  }));
+}
+
+const { task } = Astro.props;
+const { Content } = await render(task);
+const { title, description, target_route, target_label, related_tools } = task.data;
+---
+<TaskPage
+  title={title}
+  description={description}
+  target_route={target_route}
+  target_label={target_label}
+  related_tools={related_tools}
+>
+  <Content />
+</TaskPage>

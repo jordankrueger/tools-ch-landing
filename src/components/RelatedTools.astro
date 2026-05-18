@@ -1,0 +1,24 @@
+---
+import inventory from '../data/tool-inventory.json';
+import type { ToolInventory } from '../data/tool-inventory.schema';
+import ToolCard from './ToolCard.astro';
+
+interface Props { ids: string[] }
+const { ids } = Astro.props;
+
+const data = inventory as ToolInventory;
+const tools = ids
+  .map(id => data.find(t => t.id === id))
+  .filter((t): t is NonNullable<typeof t> => t !== undefined);
+---
+<div class="related-grid">
+  {tools.map(t => <ToolCard tool={t} />)}
+</div>
+
+<style is:global>
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+</style>

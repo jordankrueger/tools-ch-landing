@@ -1,0 +1,22 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'compact' | 'hero';
+}
+const { href, label, variant = 'compact' } = Astro.props;
+const className = variant === 'hero' ? 'ch-cta ch-cta-hero' : 'ch-cta';
+---
+<a class={className} href={href}>
+  {label} <span class="ch-cta-icon">→</span>
+</a>
+
+<style is:global>
+  .ch-cta-hero {
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+  }
+  .ch-cta-hero:hover { box-shadow: var(--shadow-lg); }
+</style>
