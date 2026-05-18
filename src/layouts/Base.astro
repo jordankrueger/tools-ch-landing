@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = "Free, useful tools for progressive organizers. Curated, branded, and built by CampaignHelp.",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" href="/ch-logo.png" />
+    <!-- TODO Phase 3.4: replace placeholder with production Plausible instance URL -->
+    <!-- <script defer data-domain="tools.campaign.help" src="https://plausible.campaign.help/js/script.js"></script> -->
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  @import "../styles/brand.css";
+</style>

@@ -1,0 +1,16 @@
+---
+import Base from './Base.astro';
+import CHHeader from '../components/CHHeader.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+---
+<Base title={title} description={description}>
+  <CHHeader />
+  <slot />
+  <Footer />
+</Base>
