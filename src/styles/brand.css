@@ -145,6 +145,14 @@ a:hover { color: var(--blue-800); text-decoration: underline; }
 
 .ch-cta-icon { font-size: 12px; opacity: 0.9; }
 
+.ch-cta-hero {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+}
+.ch-cta-hero:hover { box-shadow: var(--shadow-lg); }
+
 /* ============================================================
    FOOTER
    ============================================================ */

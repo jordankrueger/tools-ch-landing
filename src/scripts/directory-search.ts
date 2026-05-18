@@ -7,6 +7,13 @@ declare global {
   }
 }
 
+const FUSE_OPTIONS: Fuse.IFuseOptions<ToolEntry> = {
+  keys: ['title', 'description', 'synonyms'],
+  threshold: 0.4,
+  includeScore: false,
+  ignoreLocation: true,
+};
+
 /**
  * Pure search function — used directly by tests, also driven by initDirectorySearch.
  * Empty query returns all entries that should appear on the directory grid.
@@ -14,13 +21,7 @@ declare global {
 export function search(inventory: ToolInventory, query: string): ToolEntry[] {
   const visible = inventory.filter(t => t.appears_on_directory);
   if (!query.trim()) return visible;
-  const fuse = new Fuse(visible, {
-    keys: ['title', 'description', 'synonyms'],
-    threshold: 0.4,
-    includeScore: false,
-    ignoreLocation: true,
-  });
-  return fuse.search(query).map(r => r.item);
+  return new Fuse(visible, FUSE_OPTIONS).search(query).map(r => r.item);
 }
 
 /**
@@ -41,7 +42,10 @@ export function initDirectorySearch(): void {
 
   let currentCategory: string = 'all';
 
-  // Keyboard shortcut: "/" focuses the search input (when not already in a text input)
+  // Build the Fuse index once — inventory is static after page load.
+  const visible = inventory.filter(t => t.appears_on_directory);
+  const fuse = new Fuse(visible, FUSE_OPTIONS);
+
   document.addEventListener('keydown', (e) => {
     if (e.key !== '/') return;
     const target = e.target as HTMLElement;
@@ -52,7 +56,7 @@ export function initDirectorySearch(): void {
 
   function render() {
     const query = input!.value;
-    const searched = search(inventory, query);
+    const searched = query.trim() ? fuse.search(query).map(r => r.item) : visible;
     const filtered = currentCategory === 'all'
       ? searched
       : searched.filter(t => t.source_app === currentCategory);
@@ -64,13 +68,10 @@ export function initDirectorySearch(): void {
     });
   }
 
-  input.addEventListener('input', () => {
-    render();
-  });
-
-  // Debounced Plausible event — only fire after the user pauses for 800ms with >= 2 chars
+  // Single input listener: render immediately + debounce Plausible event (800ms after pause).
   let plausibleTimeout: number | undefined;
   input.addEventListener('input', () => {
+    render();
     if (plausibleTimeout) window.clearTimeout(plausibleTimeout);
     const q = input!.value.trim();
     if (q.length < 2) return;
