@@ -1,4 +1,4 @@
-import Fuse from 'fuse.js';
+import Fuse, { type IFuseOptions } from 'fuse.js';
 import type { ToolEntry, ToolInventory } from '../data/tool-inventory.schema';
 
 declare global {
@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-const FUSE_OPTIONS: Fuse.IFuseOptions<ToolEntry> = {
+const FUSE_OPTIONS: IFuseOptions<ToolEntry> = {
   keys: ['title', 'description', 'synonyms'],
   threshold: 0.4,
   includeScore: false,
