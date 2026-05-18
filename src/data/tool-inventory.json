@@ -1,0 +1,230 @@
+[
+  {
+    "id": "merge-pdf",
+    "title": "Merge PDFs",
+    "route": "/pdf/merge",
+    "source_app": "pdf",
+    "category": "PDF",
+    "description": "Combine multiple PDFs into one in a chosen order.",
+    "synonyms": ["merge", "combine", "join", "concat", "concatenate", "pdf", "combine pdfs"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true,
+    "featured_task": {
+      "title": "Merge and shrink a PDF for a board packet",
+      "description": "Combine scanned signatures, reports, and agendas into one tidy PDF — then make it small enough to email.",
+      "icon": "📑",
+      "icon_variant": "orange",
+      "label": "Open PDF Tools",
+      "pill": "/pdf"
+    }
+  },
+  {
+    "id": "split-pdf",
+    "title": "Split a PDF",
+    "route": "/pdf/split",
+    "source_app": "pdf",
+    "category": "PDF",
+    "description": "Break a long PDF into separate pages or page ranges.",
+    "synonyms": ["split", "separate", "divide", "extract pages", "page ranges", "break apart"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "compress-pdf",
+    "title": "Compress a PDF",
+    "route": "/pdf/compress",
+    "source_app": "pdf",
+    "category": "PDF",
+    "description": "Shrink file size so it actually fits in an email.",
+    "synonyms": ["compress", "shrink", "smaller", "pdf size", "reduce pdf", "optimize pdf"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "edit-pdf",
+    "title": "Edit a PDF",
+    "route": "/pdf/edit",
+    "source_app": "pdf",
+    "category": "PDF",
+    "description": "Add text, redact, rotate, reorder pages.",
+    "synonyms": ["edit", "annotate", "redact", "rotate", "reorder", "add text", "modify pdf"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "compress-image",
+    "title": "Compress an image",
+    "route": "/image/compress",
+    "source_app": "image",
+    "category": "Image",
+    "description": "Drag and drop — get a smaller JPG, PNG, or WebP.",
+    "synonyms": ["compress", "shrink", "smaller", "reduce", "photo size", "image size"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true,
+    "featured_task": {
+      "title": "Compress a photo for email or social",
+      "description": "Drag a phone photo in, get a smaller version that won't bounce from a board member's inbox.",
+      "icon": "🖼",
+      "label": "Open Image Suite",
+      "pill": "/image"
+    }
+  },
+  {
+    "id": "resize-crop",
+    "title": "Resize / crop",
+    "route": "/image/resize",
+    "source_app": "image",
+    "category": "Image",
+    "description": "Set exact dimensions for social or print.",
+    "synonyms": ["resize", "crop", "dimensions", "scale", "size", "social media size"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "screenshot-beautifier",
+    "title": "Screenshot beautifier",
+    "route": "/image/screenshot",
+    "source_app": "image",
+    "category": "Image",
+    "description": "Wrap a screenshot in a clean frame and background.",
+    "synonyms": ["screenshot", "beautify", "frame", "background", "mockup", "presentation"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "convert-heic-raw-psd",
+    "title": "Convert HEIC / RAW / PSD",
+    "route": "/image-pro/convert",
+    "source_app": "image-pro",
+    "category": "Image Pro",
+    "description": "70+ input formats. Get a normal JPG, PNG, or PDF out.",
+    "synonyms": ["convert", "heic", "iphone", "raw", "psd", "format", "change format"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true,
+    "featured_task": {
+      "title": "Convert a HEIC or iPhone photo to JPG",
+      "description": "Get a HEIC file you can't open? Drop it in and download a regular JPG. Works on RAW, PSD, and 70+ other formats.",
+      "icon": "📱",
+      "label": "Open Image Pro",
+      "pill": "/image-pro"
+    }
+  },
+  {
+    "id": "remove-background",
+    "title": "Remove a background",
+    "route": "/image-pro/bg-removal",
+    "source_app": "image-pro",
+    "category": "Image Pro",
+    "description": "AI-powered. Great for candidate photos and event flyers.",
+    "synonyms": ["background", "remove background", "cutout", "transparent", "ai", "candidate photo"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "images-to-pdf",
+    "title": "Images → PDF",
+    "route": "/image-pro/to-pdf",
+    "source_app": "image-pro",
+    "category": "Image Pro",
+    "description": "Bundle a set of images into a single, paginated PDF.",
+    "synonyms": ["images to pdf", "photos to pdf", "bundle", "paginate", "combine images"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "qr-code-generator",
+    "title": "QR code generator",
+    "route": "/tools/qrcode-generator",
+    "source_app": "tools",
+    "category": "Quick",
+    "description": "Make a QR from any URL. Download PNG or SVG.",
+    "synonyms": ["qr", "qrcode", "qr code", "barcode", "scan code"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true,
+    "featured_task": {
+      "title": "Generate a QR code for an event flyer",
+      "description": "Paste a link, get a clean QR code in seconds. Download as PNG or SVG to drop into your flyer.",
+      "icon": "🔳",
+      "icon_variant": "orange",
+      "label": "Open QR Generator",
+      "pill": "/tools/qr"
+    }
+  },
+  {
+    "id": "password-generator",
+    "title": "Password generator",
+    "route": "/tools/token-generator",
+    "source_app": "tools",
+    "category": "Quick",
+    "description": "Strong, configurable passwords. Nothing leaves the browser.",
+    "synonyms": ["password", "generate password", "random password", "secure password", "token"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "base64-encode-decode",
+    "title": "Base64 encode / decode",
+    "route": "/tools/base64-string-converter",
+    "source_app": "tools",
+    "category": "Quick",
+    "description": "Useful for pasting image data into email or HTML.",
+    "synonyms": ["base64", "encode", "decode", "convert", "image data", "html embed"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "timezone-converter",
+    "title": "Time-zone converter",
+    "route": "/tools/date-converter",
+    "source_app": "tools",
+    "category": "Quick",
+    "description": "Plan a coalition call across PT, MT, CT, and ET.",
+    "synonyms": ["timezone", "time zone", "convert time", "pt mt ct et", "coalition call", "schedule"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "color-picker",
+    "title": "Color picker",
+    "route": "/tools/color-converter",
+    "source_app": "tools",
+    "category": "Quick",
+    "description": "Pick a color, get hex/RGB/HSL for your design tools.",
+    "synonyms": ["color", "colour", "hex", "rgb", "hsl", "color code", "color picker"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "markdown-preview",
+    "title": "Markdown preview",
+    "route": "/tools/markdown-to-html",
+    "source_app": "tools",
+    "category": "Quick",
+    "description": "Paste markdown, see formatted output, copy as HTML.",
+    "synonyms": ["markdown", "preview", "html", "format", "md", "render"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "json-formatter",
+    "title": "JSON formatter",
+    "route": "/tools/json-prettify",
+    "source_app": "tools",
+    "category": "Quick",
+    "description": "Pretty-print and validate JSON payloads.",
+    "synonyms": ["json", "format", "prettify", "validate", "pretty print", "beautify json"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  },
+  {
+    "id": "character-word-count",
+    "title": "Character / word count",
+    "route": "/tools/text-statistics",
+    "source_app": "tools",
+    "category": "Quick",
+    "description": "For posts, ad copy, and bio limits.",
+    "synonyms": ["character count", "word count", "count", "text stats", "ad copy", "bio"],
+    "vetted_for_launch": true,
+    "appears_on_directory": true
+  }
+]
