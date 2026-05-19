@@ -2,7 +2,7 @@
   {
     "id": "merge-pdf",
     "title": "Merge PDFs",
-    "route": "/pdf/merge",
+    "route": "/pdf/merge-pdf.html",
     "source_app": "pdf",
     "category": "PDF",
     "description": "Combine multiple PDFs into one in a chosen order.",
@@ -21,7 +21,7 @@
   {
     "id": "split-pdf",
     "title": "Split a PDF",
-    "route": "/pdf/split",
+    "route": "/pdf/split-pdf.html",
     "source_app": "pdf",
     "category": "PDF",
     "description": "Break a long PDF into separate pages or page ranges.",
@@ -32,7 +32,7 @@
   {
     "id": "compress-pdf",
     "title": "Compress a PDF",
-    "route": "/pdf/compress",
+    "route": "/pdf/compress-pdf.html",
     "source_app": "pdf",
     "category": "PDF",
     "description": "Shrink file size so it actually fits in an email.",
@@ -43,7 +43,7 @@
   {
     "id": "edit-pdf",
     "title": "Edit a PDF",
-    "route": "/pdf/edit",
+    "route": "/pdf/edit-pdf.html",
     "source_app": "pdf",
     "category": "PDF",
     "description": "Add text, redact, rotate, reorder pages.",
