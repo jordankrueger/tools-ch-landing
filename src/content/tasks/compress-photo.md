@@ -14,7 +14,7 @@ A modern phone photo is 5-12 MB. Most email systems start rejecting attachments 
 
 1. Drag the photo into the drop zone (or click and pick a file).
 2. Pick an output format: **JPG** for photos, **WebP** for smaller files on the web, **PNG** if you need transparency.
-3. The slider next to the preview controls quality. **80** is the default and the right answer 90% of the time.
+3. The slider next to the preview controls quality. **80** is the default and usually the right answer.
 4. Click **Download** to save the smaller version.
 
 ## One thing people miss
