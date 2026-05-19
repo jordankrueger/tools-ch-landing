@@ -54,7 +54,7 @@
   {
     "id": "compress-image",
     "title": "Compress an image",
-    "route": "/image/compress",
+    "route": "/image/",
     "source_app": "image",
     "category": "Image",
     "description": "Drag and drop — get a smaller JPG, PNG, or WebP.",
@@ -70,24 +70,24 @@
     }
   },
   {
-    "id": "resize-crop",
-    "title": "Resize / crop",
-    "route": "/image/resize",
+    "id": "resize-image",
+    "title": "Resize an image",
+    "route": "/image/",
     "source_app": "image",
     "category": "Image",
-    "description": "Set exact dimensions for social or print.",
-    "synonyms": ["resize", "crop", "dimensions", "scale", "size", "social media size"],
+    "description": "Set max dimensions for social or print.",
+    "synonyms": ["resize", "dimensions", "scale", "size", "social media size", "max width"],
     "vetted_for_launch": true,
     "appears_on_directory": true
   },
   {
-    "id": "screenshot-beautifier",
-    "title": "Screenshot beautifier",
-    "route": "/image/screenshot",
+    "id": "convert-image-format",
+    "title": "Convert image format",
+    "route": "/image/",
     "source_app": "image",
     "category": "Image",
-    "description": "Wrap a screenshot in a clean frame and background.",
-    "synonyms": ["screenshot", "beautify", "frame", "background", "mockup", "presentation"],
+    "description": "Convert between JPG, PNG, WebP, AVIF, HEIC, GIF, SVG, TIFF, ICO.",
+    "synonyms": ["convert", "format", "jpg", "png", "webp", "avif", "tiff", "heic", "gif"],
     "vetted_for_launch": true,
     "appears_on_directory": true
   },
