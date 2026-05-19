@@ -110,8 +110,16 @@ a:hover { color: var(--blue-800); text-decoration: underline; }
   font-size: 15px;
 }
 
-.ch-brand:hover { text-decoration: none; }
 .ch-brand img { height: 28px; width: auto; display: block; }
+
+.ch-brand-parent {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gray-900);
+  font-weight: 600;
+}
+.ch-brand-parent:hover { color: var(--blue-700); text-decoration: none; }
 
 .ch-divider {
   color: var(--gray-300);
@@ -122,6 +130,7 @@ a:hover { color: var(--blue-800); text-decoration: underline; }
   color: var(--gray-500);
   font-weight: 500;
 }
+.ch-subdomain:hover { color: var(--gray-700); text-decoration: none; }
 
 .ch-cta {
   display: inline-flex;
