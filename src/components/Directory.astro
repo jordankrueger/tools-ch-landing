@@ -6,12 +6,16 @@ import ToolCard from './ToolCard.astro';
 const data = inventory as ToolInventory;
 const visible = data.filter(t => t.appears_on_directory);
 
+const catCounts = visible.reduce<Record<string, number>>((acc, t) => {
+  acc[t.category] = (acc[t.category] ?? 0) + 1;
+  return acc;
+}, {});
 const counts = {
   "All": visible.length,
-  "PDF": visible.filter(t => t.category === "PDF").length,
-  "Image": visible.filter(t => t.category === "Image").length,
-  "Image Pro": visible.filter(t => t.category === "Image Pro").length,
-  "Quick": visible.filter(t => t.category === "Quick").length,
+  "PDF": catCounts["PDF"] ?? 0,
+  "Image": catCounts["Image"] ?? 0,
+  "Image Pro": catCounts["Image Pro"] ?? 0,
+  "Quick": catCounts["Quick"] ?? 0,
 };
 
 const inventoryJson = JSON.stringify(visible);

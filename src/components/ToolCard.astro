@@ -3,18 +3,11 @@ import type { ToolEntry } from '../data/tool-inventory.schema';
 interface Props { tool: ToolEntry }
 const { tool } = Astro.props;
 
-const iconClass = {
-  "pdf": "b-pdf",
-  "image": "b-img",
-  "image-pro": "b-pro",
-  "tools": "b-dev",
-}[tool.source_app];
-
-const defaultByCategory: Record<string, string> = {
-  "pdf": "📑",
-  "image": "🖼",
-  "image-pro": "⚡",
-  "tools": "🔧",
+const sourceAppMeta: Record<string, { cls: string; glyph: string }> = {
+  "pdf":       { cls: "b-pdf", glyph: "📑" },
+  "image":     { cls: "b-img", glyph: "🖼" },
+  "image-pro": { cls: "b-pro", glyph: "⚡" },
+  "tools":     { cls: "b-dev", glyph: "🔧" },
 };
 
 const iconOverrides: Record<string, string> = {
@@ -23,7 +16,9 @@ const iconOverrides: Record<string, string> = {
   "color-picker": "🎨",
 };
 
-const iconGlyph = iconOverrides[tool.id] ?? defaultByCategory[tool.source_app];
+const meta = sourceAppMeta[tool.source_app] ?? { cls: "b-dev", glyph: "🔧" };
+const iconClass = meta.cls;
+const iconGlyph = iconOverrides[tool.id] ?? meta.glyph;
 ---
 <a class="card" href={tool.route} data-tool-id={tool.id} data-category={tool.source_app}>
   <div class="card-top">
